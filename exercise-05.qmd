@@ -8,12 +8,11 @@ editor: visual
 
 ## Exercise 05: Generate Sampling Distributions and CIs
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Load packages and data
 
 ```{r}
-1 + 1
+library(tidyverse)
+d <- read.csv("https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv")
 ```
 
 ## Running Code
