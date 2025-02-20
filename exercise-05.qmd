@@ -6,9 +6,7 @@ self-contained: true
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Exercise 05: Generate Sampling Distributions and CIs
 
 ## Running Code
 
@@ -18,11 +16,18 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
 
 ```{r}
-#| echo: false
-2 * 2
+1 + 1
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
