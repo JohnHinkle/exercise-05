@@ -1,0 +1,55 @@
+---
+title: "exercise-05-challenge-1"
+author: "John Hinkle"
+format: html
+self-contained: true
+editor: visual
+---
+
+## Exercise 05: Generate Sampling Distributions and CIs
+
+## Step 1: Load packages and data
+
+```{r}
+library(tidyverse)
+d <- read.csv("https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-movies.csv")
+```
+
+## Step 2: Filter data set
+
+```{r}
+df <- filter(d, runtimeMinutes >= 60, runtimeMinutes <= 180 & startYear >= 1920, startYear <= 1979) |> mutate(decade = paste0(floor(((startYear-1900)/10))*10,"s"))
+```
+
+## Step 3: Generate histograms of movie run time for each decade
+
+```{r}
+library(ggplot2)
+ggplot(df, aes(x=runtimeMinutes)) +
+  geom_histogram(binwidth=15) +
+  facet_wrap(~decade)
+```
+
+## Step 4:
+
+```{r}
+
+```
+
+## Step 5:
+
+```{r}
+
+```
+
+## Step 6:
+
+```{r}
+
+```
+
+## Step 7:
+
+```{r}
+
+```
