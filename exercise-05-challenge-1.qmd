@@ -6,7 +6,7 @@ self-contained: true
 editor: visual
 ---
 
-## Exercise 05: Generate Sampling Distributions and CIs
+## Exercise 05, Challenge 1
 
 ## Step 1: Load packages and data
 
@@ -30,10 +30,11 @@ ggplot(df, aes(x=runtimeMinutes)) +
   facet_wrap(~decade)
 ```
 
-## Step 4:
+## Step 4: Calculate mean runtime and standard deviation for each decade
 
 ```{r}
-
+print(runtime_mean_by_decade <- group_by(df, decade) |>
+  summarise(runtime_mean = mean(runtimeMinutes), runtime_sd = sd(runtimeMinutes)))
 ```
 
 ## Step 5:
