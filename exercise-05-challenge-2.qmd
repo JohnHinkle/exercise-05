@@ -15,12 +15,25 @@ library(tidyverse)
 z <- read.csv("https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv")
 ```
 
-## Step 2: Calculate the population mean and standard deviation
+## Step 2: Calculate the population mean and standard deviation for each quantitative variable
 
 ```{r}
+pop_sd <- function(x){
+  sqrt(sum((x - mean(x))^2) / length(x))
+}
+
+
+
+print(z_summary <- 
+        z |> 
+        select(-id) |>
+  summarise(across(where(is.numeric), list( 
+    mean = ~mean(.), 
+    sd = ~pop_sd(.)
+    ), .names = "{.col}_{.fn}")))
 ```
 
-## Step 3: Box plots by gender
+## Step 3: Box plots of numerical variables by gender
 
 ```{r}
 library(ggplot2)
