@@ -1,0 +1,70 @@
+---
+title: "exercise-05-challenge-2"
+author: "John Hinkle"
+format: html
+self-contained: true
+editor: visual
+---
+
+## Exercise 05, Challenge 2
+
+## Step 1: Load data
+
+```{r}
+library(tidyverse)
+z <- read.csv("https://raw.githubusercontent.com/difiore/ada-datasets/main/zombies.csv")
+```
+
+## Step 2: Calculate the population mean and standard deviation
+
+```{r}
+```
+
+## Step 3: Box plots by gender
+
+```{r}
+library(ggplot2)
+
+```
+
+## Step 4: Scatter plots
+
+```{r}
+
+```
+
+## Step 5: Histograms
+
+```{r}
+
+```
+
+## Step 6:
+
+```{r}
+
+```
+
+## Step 7:
+
+```{r}
+
+```
+
+## Step 8:
+
+```{r}
+
+```
+
+## Step 9:
+
+```{r}
+
+```
+
+## Step 10:
+
+```{r}
+
+```

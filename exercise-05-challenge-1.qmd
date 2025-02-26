@@ -33,23 +33,43 @@ ggplot(df, aes(x=runtimeMinutes)) +
 ## Step 4: Calculate mean runtime and standard deviation for each decade
 
 ```{r}
-print(runtime_mean_by_decade <- group_by(df, decade) |>
+print(runtime_stats_by_decade <- group_by(df, decade) |>
   summarise(runtime_mean = mean(runtimeMinutes), runtime_sd = sd(runtimeMinutes)))
 ```
 
 ## Step 5:
 
 ```{r}
-
+sample <- group_by(df, decade) |>
+  slice_sample(n=100)
+print(stats <- group_by(sample, decade) |>
+  summarise(runtime_mean = mean(runtimeMinutes), runtime_sd = sd(runtimeMinutes)))
 ```
 
 ## Step 6:
 
 ```{r}
-
 ```
 
 ## Step 7:
+
+```{r}
+
+```
+
+## Step 8:
+
+```{r}
+
+```
+
+## Step 9:
+
+```{r}
+
+```
+
+## Step 10:
 
 ```{r}
 
