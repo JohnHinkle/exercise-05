@@ -139,7 +139,8 @@ cat("95% CI for age:", age_ci)
 ## Step 7:
 
 ```{r}
-
+library(mosaic)
+reps <- 199
 ```
 
 ## Step 8:
