@@ -110,7 +110,8 @@ print(z_sample_summary <-
         select(-id) |>
   summarise(across(where(is.numeric), list( 
     mean = ~mean(.), 
-    sd = ~sd(.)
+    sd = ~sd(.),
+    se = ~sd(.)/sqrt(length(.))
     ), .names = "{.col}_{.fn}")))
 ```
 
