@@ -100,11 +100,12 @@ hist(z$years_of_education)
 hist(z$age)
 ```
 
-## Step 6: Sample one subset of 50 survivors
+## Step 6: Sample one subset of 50 survivors, calculate summary statistics and CIs for each quantitative random variable
 
 ```{r}
 z_sample <- slice_sample(z, n=50)
 
+# summary stats df
 print(z_sample_summary <- 
         z_sample |> 
         select(-id) |>
@@ -113,6 +114,26 @@ print(z_sample_summary <-
     sd = ~sd(.),
     se = ~sd(.)/sqrt(length(.))
     ), .names = "{.col}_{.fn}")))
+
+# 95% CI for height
+height_ci <- z_sample_summary$height_mean + qnorm(p=c(0.025, 0.975))*z_sample_summary$height_se
+cat("95% CI for height:", height_ci, "\n")
+
+# 95% CI for weight
+weight_ci <- z_sample_summary$weight_mean + qnorm(p=c(0.025, 0.975))*z_sample_summary$weight_se
+cat("95% CI for weight:", weight_ci, "\n")
+
+# 95% CI for zombies killed
+kills_ci <- z_sample_summary$zombies_killed_mean + qnorm(p=c(0.025, 0.975))*z_sample_summary$zombies_killed_se
+cat("95% CI for zombies killed:", kills_ci, "\n")
+
+# 95% CI for years of education
+education_ci <- z_sample_summary$years_of_education_mean + qnorm(p=c(0.025, 0.975))*z_sample_summary$years_of_education_se
+cat("95% CI for years of education:", education_ci, "\n")
+
+# # 95% CI for age
+age_ci <- z_sample_summary$age_mean + qnorm(p=c(0.025, 0.975))*z_sample_summary$age_se
+cat("95% CI for age:", age_ci)
 ```
 
 ## Step 7:
