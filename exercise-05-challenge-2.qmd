@@ -100,7 +100,7 @@ hist(z$years_of_education)
 hist(z$age)
 ```
 
-## Step 6:
+## Step 6: Sample one subset of 50 survivors
 
 ```{r}
 z_sample <- slice_sample(z, n=50)
