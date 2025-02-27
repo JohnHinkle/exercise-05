@@ -191,10 +191,23 @@ hist(sample_means$years_of_education_mean)
 hist(sample_means$age_mean)
 ```
 
-## Step 9:
+## Step 9: Confidence Intervals of Sampling Distribution
 
 ```{r}
+# Height
+quantile(sample_means$height_mean, c(0.025, 0.975))
 
+# Weight
+print(quantile(sample_means$weight_mean, c(0.025, 0.975)))
+
+# Zombies killed
+print(quantile(sample_means$zombies_killed_mean, c(0.025, 0.975)))
+
+# Years of education
+print(quantile(sample_means$years_of_education_mean, c(0.025, 0.975)))
+
+# Age
+print(quantile(sample_means$age_mean, c(0.025, 0.975)))
 ```
 
 ## Step 10:
