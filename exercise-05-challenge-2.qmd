@@ -109,7 +109,7 @@ z_sample <- slice_sample(z, n=50)
 print(z_sample_summary <- 
         z_sample |> 
         select(-id) |>
-  summarise(across(where(is.numeric), list( 
+  summarize(across(where(is.numeric), list( 
     mean = ~mean(.), 
     sd = ~sd(.),
     se = ~sd(.)/sqrt(length(.))
@@ -164,6 +164,8 @@ single_sample <-data.frame(
 
 # Add that initial sample to the other 199
 sample_means <- rbind(sample_means, single_sample)
+
+sampling_distribution_mean <- mean
 ```
 
 ## Step 8:
