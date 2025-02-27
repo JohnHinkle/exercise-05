@@ -1,12 +1,14 @@
 ---
 title: "exercise-05-challenge-1"
-author: "John Hinkle"
+author: "John Hinkle & Yen Do"
 format: html
 self-contained: true
 editor: visual
 ---
 
 ## Exercise 05, Challenge 1
+
+## 
 
 ## Step 1: Load packages and data
 
@@ -19,6 +21,7 @@ d <- read.csv("https://raw.githubusercontent.com/difiore/ada-datasets/main/IMDB-
 
 ```{r}
 df <- filter(d, runtimeMinutes >= 60, runtimeMinutes <= 180 & startYear >= 1920, startYear <= 1979) |> mutate(decade = paste0(floor(((startYear-1900)/10))*10,"s"))
+nrow(df)
 ```
 
 ## Step 3: Generate histograms of movie run time for each decade
@@ -37,40 +40,74 @@ print(runtime_stats_by_decade <- group_by(df, decade) |>
   summarise(runtime_mean = mean(runtimeMinutes), runtime_sd = sd(runtimeMinutes)))
 ```
 
-## Step 5:
+## Step 5: Draw a single sample of 100 movies per decade
 
 ```{r}
-sample <- group_by(df, decade) |>
-  slice_sample(n=100)
-print(stats <- group_by(sample, decade) |>
-  summarise(runtime_mean = mean(runtimeMinutes), runtime_sd = sd(runtimeMinutes)))
+sample <- df |>
+  group_by(decade) |>
+  slice_sample(n=100) |>
+  summarise(sample_mean = mean(runtimeMinutes), 
+            sample_sd = sd(runtimeMinutes)
+            )
 ```
 
-## Step 6:
+## Step 6: Calculate standard error
 
 ```{r}
+sample <- sample |>
+  mutate(sample_se = sample_sd / sqrt(100))
 ```
 
-## Step 7:
+## Step 7: Compare estimates to actual population values
 
 ```{r}
-
+comparison <- left_join(sample, runtime_stats_by_decade, by = "decade") |>
+  mutate(
+    runtime_se = runtime_sd / sqrt(100),
+    diff_mean = abs(sample_mean - runtime_mean),
+    diff_se = abs(sample_se - runtime_se)
+  )
 ```
 
-## Step 8:
+## Step 8: Generate a *sampling distribution*
 
 ```{r}
-
+library(infer)
+library(dplyr)
+sampling_dist <- df |>
+  group_by(decade) |>
+  rep_sample_n(size = 100, reps = 1000, replace = FALSE) |>
+  group_by(decade, replicate) |>
+  group_by(decade, replicate) |>
+  summarise(samp_dist_mean = mean(runtimeMinutes),
+            samp_dist_sd = sd(runtimeMinutes),
+            .groups = "drop")
 ```
 
-## Step 9:
+## Step 9: Calculate the **mean** and the **standard deviation** of the sampling distribution of sample means for each decade
 
 ```{r}
+sampling_stats <- sampling_dist |>
+  group_by(decade) |>
+  summarise(samp_dis_mean = mean(samp_dist_mean),
+            sam_dis_sd = sd(samp_dist_mean)
+  )
 
+ggplot(sampling_dist, aes(x=samp_dist_mean)) +
+  geom_histogram(binwidth=1) +
+  facet_wrap(~decade)
 ```
 
-## Step 10:
+The shape of plot: bell shape
+
+## Step 10: Compare standard errors
 
 ```{r}
+sampling_dist_2 <- sampling_dist |>
+  group_by(decade) |>
+  summarise(se_2 = sd(samp_dist_mean))
+
+comparison2 <- comparison |>
+  left_join(sampling_dist_2, by = "decade")
 
 ```
