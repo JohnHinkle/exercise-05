@@ -8,8 +8,6 @@ editor: visual
 
 ## Exercise 05, Challenge 1
 
-## 
-
 ## Step 1: Load packages and data
 
 ```{r}
