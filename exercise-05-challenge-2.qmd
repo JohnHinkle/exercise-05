@@ -172,7 +172,7 @@ print(sampling_distribution_summary_stats <- data.frame(
 ))
 ```
 
-## Step 8:
+## Step 8: Histograms
 
 ```{r}
 # Height mean
