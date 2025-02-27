@@ -36,7 +36,7 @@ ggplot(df, aes(x=runtimeMinutes)) +
 ## Step 4: Calculate mean runtime and standard deviation for each decade
 
 ```{r}
-print(runtime_stats_by_decade <- group_by(df, decade) |>
+print(results <- group_by(df, decade) |>
   summarise(runtime_mean = mean(runtimeMinutes), runtime_sd = sd(runtimeMinutes)))
 ```
 
@@ -61,7 +61,7 @@ sample <- sample |>
 ## Step 7: Compare estimates to actual population values
 
 ```{r}
-comparison <- left_join(sample, runtime_stats_by_decade, by = "decade") |>
+comparison <- left_join(sample, results, by = "decade") |>
   mutate(
     runtime_se = runtime_sd / sqrt(100),
     diff_mean = abs(sample_mean - runtime_mean),
