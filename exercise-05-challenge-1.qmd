@@ -8,8 +8,6 @@ editor: visual
 
 ## Exercise 05, Challenge 1
 
-## 
-
 ## Step 1: Load packages and data
 
 ```{r}
@@ -73,7 +71,6 @@ comparison <- left_join(sample, results, by = "decade") |>
 
 ```{r}
 library(infer)
-library(dplyr)
 sampling_dist <- df |>
   group_by(decade) |>
   rep_sample_n(size = 100, reps = 1000, replace = FALSE) |>

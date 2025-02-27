@@ -165,13 +165,30 @@ single_sample <-data.frame(
 # Add that initial sample to the other 199
 sample_means <- rbind(sample_means, single_sample)
 
-sampling_distribution_mean <- mean
+# Get the mean and standard deviation for each variable
+print(sampling_distribution_summary_stats <- data.frame(
+  mean = colMeans(sample_means),
+  sd = apply(sample_means, 2, sd)
+))
 ```
 
-## Step 8:
+## Step 8: Histograms
 
 ```{r}
+# Height mean
+hist(sample_means$height_mean)
 
+# Weight mean
+hist(sample_means$weight_mean)
+
+# Zombies killed mean
+hist(sample_means$zombies_killed_mean)
+
+# Years of education mean
+hist(sample_means$years_of_education_mean)
+
+# Age mean
+hist(sample_means$age_mean)
 ```
 
 ## Step 9:
