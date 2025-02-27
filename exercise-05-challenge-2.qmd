@@ -139,8 +139,31 @@ cat("95% CI for age:", age_ci)
 ## Step 7:
 
 ```{r}
-library(mosaic)
 reps <- 199
+zquant <- z[, sapply(z, is.numeric)] |> 
+  select(-id)
+
+sample_means <- matrix(NA, nrow = reps, ncol = ncol(zquant))
+
+for (i in 1:reps) {
+  sample_data <- zquant[sample(1:nrow(zquant), 50), ]
+  sample_means[i, ] <- colMeans(sample_data)
+}
+
+sample_means <- as.data.frame(sample_means)
+colnames(sample_means) <- c("height_mean", "weight_mean", "zombies_killed_mean", "years_of_education_mean", "age_mean")
+
+# Create a df containing the means from the initial, single sample
+single_sample <-data.frame(
+  height_mean = z_sample_summary$height_mean,
+  weight_mean = z_sample_summary$weight_mean,
+  zombies_killed_mean = z_sample_summary$zombies_killed_mean,
+  years_of_education_mean = z_sample_summary$years_of_education_mean,
+  age_mean = z_sample_summary$age_mean
+)
+
+# Add that initial sample to the other 199
+sample_means <- rbind(sample_means, single_sample)
 ```
 
 ## Step 8:
