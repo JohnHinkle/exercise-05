@@ -75,7 +75,6 @@ sampling_dist <- df |>
   group_by(decade) |>
   rep_sample_n(size = 100, reps = 1000, replace = FALSE) |>
   group_by(decade, replicate) |>
-  group_by(decade, replicate) |>
   summarise(samp_dist_mean = mean(runtimeMinutes),
             samp_dist_sd = sd(runtimeMinutes),
             .groups = "drop")
