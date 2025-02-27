@@ -73,7 +73,6 @@ comparison <- left_join(sample, runtime_stats_by_decade, by = "decade") |>
 
 ```{r}
 library(infer)
-library(dplyr)
 sampling_dist <- df |>
   group_by(decade) |>
   rep_sample_n(size = 100, reps = 1000, replace = FALSE) |>
