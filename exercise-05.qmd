@@ -1,5 +1,5 @@
 ---
-title: "exercise-05-challenge-1"
+title: "exercise-05"
 author: "John Hinkle & Yen Do"
 format: html
 self-contained: true
