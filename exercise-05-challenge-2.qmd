@@ -210,7 +210,7 @@ print(quantile(sample_means$years_of_education_mean, c(0.025, 0.975)))
 print(quantile(sample_means$age_mean, c(0.025, 0.975)))
 ```
 
-## Step 10:
+## Step 10: Bootstrapping
 
 ```{r}
 
